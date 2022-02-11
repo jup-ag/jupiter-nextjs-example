@@ -171,12 +171,13 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@jup-ag/core@1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-1.0.0-beta.11.tgz#f83495dc43bbbe96524cb6df47c41fea499c39cd"
-  integrity sha512-Oth+lgMt1ewvvhXqsCWpkaPm0ThgBd1OenXXgGb+j08coK1vlX7B2/JX/koOLWEYI5MEmNRLsBZUusAapXFkIg==
+"@jup-ag/core@1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-1.0.0-beta.13.tgz#ac7d4f12e1401ba4732994d51458e50ed9723982"
+  integrity sha512-OX4yREEZPjfuLHkJ9n8Oq08jo+fPp9c7wu2kDUrL+ZggqXRP/jwAXIhZauk8IgMFyb6gH/6GXRyPAKDQ07kvnQ==
   dependencies:
-    "@jup-ag/math" "1.0.0-beta.11"
+    "@jup-ag/math" "1.0.0-beta.13"
+    "@mercurial-finance/optimist" "~0.1.0"
     "@project-serum/anchor" "~0.20.1"
     "@project-serum/serum" "~0.13.61"
     "@saberhq/stableswap-sdk" "~1.12.6"
@@ -189,10 +190,10 @@
     jsbi "~4.1.0"
     promise-retry "~2.0.1"
 
-"@jup-ag/math@1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-1.0.0-beta.11.tgz#11ee330e34b8d0a357703c2eb7cb9bdd91573e51"
-  integrity sha512-ZJLh9gLrr6N9Iz8BDG3meTPnCkBVv2AmDk+dJMuZEZ0bz0wrawFbiUhwno23cnDSNtVpMTLpW6N25md5W+he1w==
+"@jup-ag/math@1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-1.0.0-beta.13.tgz#463f72c65c27a8184101bb99456d5c3c2429874b"
+  integrity sha512-zwlh6tL043AnCpmoChz1qQkITK7aPq66hZVd9vwNRpfz0L3I4w1pZ5KLAatnXQDkhlsl2Ahh3mD8EQT8R00PxA==
   dependencies:
     "@solana/spl-token-registry" "~0.2.1105"
     "@solana/web3.js" "~1.31.0"
@@ -200,12 +201,12 @@
     decimal.js "~10.3.1"
     jsbi "~4.1.0"
 
-"@jup-ag/react-hook@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-1.0.0-beta.11.tgz#6b600886491be58ddd917f85e70882e3759187e6"
-  integrity sha512-Bq+XuY/RwtB95koF7apn52MTehFdMdCtUPI7C40x/qOq25eFRAbJCrhcJhlXcAMmq4q9RYul8CZfeiwBICGiDA==
+"@jup-ag/react-hook@^1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-1.0.0-beta.13.tgz#dc29d13012e2b26c8af3236c1012fb853ad76dca"
+  integrity sha512-Z4ALo4s1CxPKdnRF5NPH7REW1IkJtE1oQlLDdwNpT50NFRXhnLlHOiFonPLlEEYEEBtcZMyqE5of/9tvrNMDlw==
   dependencies:
-    "@jup-ag/core" "1.0.0-beta.11"
+    "@jup-ag/core" "1.0.0-beta.13"
 
 "@ledgerhq/devices@^6.11.2", "@ledgerhq/devices@^6.20.0":
   version "6.20.0"
@@ -254,6 +255,15 @@
   version "6.10.0"
   resolved "https://registry.npmjs.org/@ledgerhq/logs/-/logs-6.10.0.tgz"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
+
+"@mercurial-finance/optimist@~0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mercurial-finance/optimist/-/optimist-0.1.0.tgz#853f8032f4a48a94ae91d6a39251e975ebcfbe0f"
+  integrity sha512-n8gMNFG+58rQkejh52sTDSySPhA5/5r1B7a9cVrSIngySguPerrS+iMnNCPn9VchG7j64vd64iRgnrqf0bTEIg==
+  dependencies:
+    "@solana/web3.js" "~1.31.0"
+    "@tsconfig/recommended" "^1.0.1"
+    typescript "~4.4.4"
 
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
@@ -752,6 +762,11 @@
   version "1.0.3"
   resolved "https://registry.npmjs.org/@toruslabs/tweetnacl-js/-/tweetnacl-js-1.0.3.tgz"
   integrity sha512-WQJYMTR/bkqvpk3DWOqRt5e24RhwJp9PXUoSj4zSthd3+fDhKYCI56YVMPNDKah1fCffOe9F3m8iZ5SgDZ+Csw==
+
+"@tsconfig/recommended@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.1.tgz#7619bad397e06ead1c5182926c944e0ca6177f52"
+  integrity sha512-2xN+iGTbPBEzGSnVp/Hd64vKJCJWxsi9gfs88x4PPMyEjHJoA3o5BY9r5OLPHIZU2pAQxkSAsJFqn6itClP8mQ==
 
 "@types/bn.js@^4.11.5":
   version "4.11.6"
@@ -4425,9 +4440,9 @@ type-fest@^0.7.1:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.7.1.tgz"
   integrity sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==
 
-typescript@4.4.4:
+typescript@4.4.4, typescript@~4.4.4:
   version "4.4.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.4.4.tgz"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
 
 unbox-primitive@^1.0.1:

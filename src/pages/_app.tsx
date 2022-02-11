@@ -26,7 +26,7 @@ const WalletProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const endpoint = useMemo(() => "https://solana-api.projectserum.com", []);
+  const endpoint = useMemo(() => "https://mercurial.rpcpool.com", []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
@@ -47,6 +47,7 @@ const JupiterWrapper: React.FC = ({ children }) => {
       cluster="mainnet-beta"
       connection={connection}
       userPublicKey={wallet.publicKey || undefined}
+      routeCacheDuration={5000}
     >
       {children}
     </JupiterProvider>
