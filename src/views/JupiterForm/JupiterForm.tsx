@@ -4,23 +4,25 @@ import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 
 import { useJupiter } from "@jup-ag/react-hook";
-import { CHAIN_ID, INPUT_MINT_ADDRESS, OUTPUT_MINT_ADDRESS } from "../../constants";
+import {
+  CHAIN_ID,
+  INPUT_MINT_ADDRESS,
+  OUTPUT_MINT_ADDRESS,
+} from "../../constants";
 
 import styles from "./JupiterForm.module.css";
 import FeeInfo from "./FeeInfo";
 
-interface IJupiterFormProps { }
+interface IJupiterFormProps {}
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
 
 const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const wallet = useWallet();
   const { connection } = useConnection();
-  const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(
-    new Map()
-  );
+  const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
 
   const [formValue, setFormValue] = useState<UseJupiterProps>({
-    amount: 1 * (10 ** 6), // unit in lamports (Decimals)
+    amount: 1 * 10 ** 6, // unit in lamports (Decimals)
     inputMint: new PublicKey(INPUT_MINT_ADDRESS),
     outputMint: new PublicKey(OUTPUT_MINT_ADDRESS),
     slippage: 1, // 0.1%
@@ -162,10 +164,11 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
         </div>
       </div>
 
-
       <div className="flex justify-center">
         <button
-          className={`${loading ? 'opacity-50 cursor-not-allowed' : ''} inline-flex items-center px-4 py-2 mt-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+          className={`${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          } inline-flex items-center px-4 py-2 mt-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           type="button"
           onClick={refresh}
           disabled={loading}
@@ -175,15 +178,13 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               className={`${styles.loader} mr-4 ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24`}
             ></div>
           )}
-
           Refresh rate
         </button>
       </div>
 
       <div>Total routes: {routes?.length}</div>
 
-      {
-        routes?.[0] &&
+      {routes?.[0] &&
         (() => {
           const route = routes[0];
           return (
@@ -200,8 +201,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               <FeeInfo route={route} />
             </div>
           );
-        })()
-      }
+        })()}
 
       {error && <div>Error in Jupiter, try changing your intpu</div>}
 
@@ -225,15 +225,9 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
                   signAllTransactions: wallet.signAllTransactions,
                   signTransaction: wallet.signTransaction,
                 },
-                route: routes[0],
-                confirmationWaiterFactory: async (txid) => {
+                routeInfo: routes[0],
+                onTransaction: async (txid) => {
                   console.log("sending transaction");
-                  await connection.confirmTransaction(txid);
-                  console.log("confirmed transaction");
-
-                  return await connection.getTransaction(txid, {
-                    commitment: "confirmed",
-                  });
                 },
               });
 
@@ -253,7 +247,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           Swap Best Route
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 

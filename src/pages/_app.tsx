@@ -26,7 +26,7 @@ const WalletProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const endpoint = useMemo(() => "https://mercurial.rpcpool.com", []);
+  const endpoint = useMemo(() => "https://ssc-dao.genesysgo.net/", []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
