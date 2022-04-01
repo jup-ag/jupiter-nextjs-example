@@ -10,11 +10,13 @@ import {
   OUTPUT_MINT_ADDRESS,
 } from "../../constants";
 
-import styles from "./JupiterForm.module.css";
 import FeeInfo from "./FeeInfo";
+import SpinnerProgress from "./SpinnerProgress";
 
-interface IJupiterFormProps {}
+interface IJupiterFormProps { }
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
+
+const SECOND_TO_REFRESH = 30;
 
 const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const wallet = useWallet();
@@ -52,7 +54,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     return formValue.amount * 10 ** (inputTokenInfo?.decimals || 1);
   }, [inputTokenInfo, formValue.amount]);
 
-  const { routeMap, allTokenMints, routes, loading, exchange, error, refresh } =
+  const { routeMap, allTokenMints, routes, loading, exchange, error, refresh, lastRefreshTimestamp } =
     useJupiter({
       ...formValue,
       amount: amountInDecimal,
@@ -80,6 +82,21 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     }
   }, [formValue.inputMint?.toBase58(), formValue.outputMint?.toBase58()]);
 
+  const [timeDiff, setTimeDiff] = useState(lastRefreshTimestamp);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (loading) return;
+
+      const diff = (new Date().getTime() - lastRefreshTimestamp) / 1000
+      setTimeDiff(diff / SECOND_TO_REFRESH * 100)
+
+      if (diff >= SECOND_TO_REFRESH) {
+        refresh();
+      }
+    }, 1000)
+    return () => clearInterval(intervalId);
+  }, [])
+
   return (
     <div className="max-w-full md:max-w-lg">
       <div className="mb-2">
@@ -101,13 +118,16 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             }
           }}
         >
-          {allTokenMints.map((tokenMint) => {
-            return (
-              <option key={tokenMint} value={tokenMint}>
-                {tokenMap.get(tokenMint)?.name || "unknown"}
-              </option>
-            );
-          })}
+          {allTokenMints
+            .map((tokenMint) => {
+              const found = tokenMap.get(tokenMint);
+
+              return (
+                <option key={tokenMint} value={tokenMint}>
+                  {found ? found.symbol : tokenMint}
+                </option>
+              );
+            }).filter(Boolean)}
         </select>
       </div>
 
@@ -131,9 +151,11 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           }}
         >
           {validOutputMints.map((tokenMint) => {
+            const found = tokenMap.get(tokenMint);
+
             return (
               <option key={tokenMint} value={tokenMint}>
-                {tokenMap.get(tokenMint)?.name || "unknown"}
+                {found ? found.symbol : tokenMint}
               </option>
             );
           })}
@@ -164,21 +186,17 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center mt-4">
+
         <button
-          className={`${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          } inline-flex items-center px-4 py-2 mt-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+          className={`${loading ? "opacity-50 cursor-not-allowed" : ""
+            } inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 space-x-2`}
           type="button"
           onClick={refresh}
           disabled={loading}
         >
-          {loading && (
-            <div
-              className={`${styles.loader} mr-4 ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24`}
-            ></div>
-          )}
-          Refresh rate
+          <SpinnerProgress percentage={timeDiff} sqSize={18} strokeWidth={2} />
+          <span>{loading ? 'Loading' : 'Refresh'}</span>
         </button>
       </div>
 
@@ -191,7 +209,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             <div>
               <div>
                 Best route info :{" "}
-                {route.marketInfos.map((info) => info.marketMeta.amm.label)}
+                {route.marketInfos.map((info) => info.marketMeta.amm.label).join(' -> ')}
               </div>
               <div>
                 Output:{" "}
