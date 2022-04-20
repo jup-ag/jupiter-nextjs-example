@@ -13,7 +13,7 @@ import {
 import FeeInfo from "./FeeInfo";
 import SpinnerProgress from "./SpinnerProgress";
 
-interface IJupiterFormProps { }
+interface IJupiterFormProps {}
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
 
 const SECOND_TO_REFRESH = 30;
@@ -54,11 +54,19 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     return formValue.amount * 10 ** (inputTokenInfo?.decimals || 1);
   }, [inputTokenInfo, formValue.amount]);
 
-  const { routeMap, allTokenMints, routes, loading, exchange, error, refresh, lastRefreshTimestamp } =
-    useJupiter({
-      ...formValue,
-      amount: amountInDecimal,
-    });
+  const {
+    routeMap,
+    allTokenMints,
+    routes,
+    loading,
+    exchange,
+    error,
+    refresh,
+    lastRefreshTimestamp,
+  } = useJupiter({
+    ...formValue,
+    amount: amountInDecimal,
+  });
 
   const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
@@ -87,15 +95,15 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     const intervalId = setInterval(() => {
       if (loading) return;
 
-      const diff = (new Date().getTime() - lastRefreshTimestamp) / 1000
-      setTimeDiff(diff / SECOND_TO_REFRESH * 100)
+      const diff = (new Date().getTime() - lastRefreshTimestamp) / 1000;
+      setTimeDiff((diff / SECOND_TO_REFRESH) * 100);
 
       if (diff >= SECOND_TO_REFRESH) {
         refresh();
       }
-    }, 1000)
+    }, 1000);
     return () => clearInterval(intervalId);
-  }, [])
+  }, []);
 
   return (
     <div className="max-w-full md:max-w-lg">
@@ -127,7 +135,8 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
                   {found ? found.symbol : tokenMint}
                 </option>
               );
-            }).filter(Boolean)}
+            })
+            .filter(Boolean)}
         </select>
       </div>
 
@@ -187,16 +196,16 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
       </div>
 
       <div className="flex justify-center items-center mt-4">
-
         <button
-          className={`${loading ? "opacity-50 cursor-not-allowed" : ""
-            } inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 space-x-2`}
+          className={`${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          } inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 space-x-2`}
           type="button"
           onClick={refresh}
           disabled={loading}
         >
           <SpinnerProgress percentage={timeDiff} sqSize={18} strokeWidth={2} />
-          <span>{loading ? 'Loading' : 'Refresh'}</span>
+          <span>{loading ? "Loading" : "Refresh"}</span>
         </button>
       </div>
 
@@ -209,7 +218,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             <div>
               <div>
                 Best route info :{" "}
-                {route.marketInfos.map((info) => info.marketMeta.amm.label).join(' -> ')}
+                {route.marketInfos.map((info) => info.amm.label).join(" -> ")}
               </div>
               <div>
                 Output:{" "}
