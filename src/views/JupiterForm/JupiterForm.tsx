@@ -69,8 +69,6 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     amount: amountInDecimal,
   });
 
-  console.log({ loading, routeMap, tokenMap });
-
   const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
     [routeMap, formValue.inputMint?.toBase58()]
