@@ -47,7 +47,7 @@ const JupiterWrapper: React.FC = ({ children }) => {
       cluster="mainnet-beta"
       connection={connection}
       userPublicKey={wallet.publicKey || undefined}
-      routeCacheDuration={5000}
+      routeCacheDuration={0}
     >
       {children}
     </JupiterProvider>

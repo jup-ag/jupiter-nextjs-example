@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@jup-ag/react-hook": "^1.0.0-beta.22",
+    "@jup-ag/react-hook": "^1.0.0-beta.23",
     "@solana/spl-token-registry": "^0.2.298",
     "@solana/wallet-adapter-base": "^0.7.0",
     "@solana/wallet-adapter-phantom": "^0.7.0",
@@ -19,6 +19,7 @@
     "@solana/wallet-adapter-sollet": "^0.8.0",
     "@solana/wallet-adapter-wallets": "^0.11.3",
     "@tailwindcss/typography": "^0.4.1",
+    "cross-fetch": "^3.1.5",
     "daisyui": "^1.16.2",
     "dotenv": "^10.0.0",
     "next": "^12.0.7",

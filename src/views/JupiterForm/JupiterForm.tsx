@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
-import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
+import { TokenInfo } from "@solana/spl-token-registry";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 
-import { useJupiter } from "@jup-ag/react-hook";
+import { TOKEN_LIST_URL, useJupiter } from "@jup-ag/react-hook";
 import {
   CHAIN_ID,
   INPUT_MINT_ADDRESS,
@@ -12,6 +12,7 @@ import {
 
 import FeeInfo from "./FeeInfo";
 import SpinnerProgress from "./SpinnerProgress";
+import fetch from "cross-fetch";
 
 interface IJupiterFormProps {}
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
@@ -38,16 +39,16 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   }, [formValue.inputMint?.toBase58(), formValue.outputMint?.toBase58()]);
 
   useEffect(() => {
-    new TokenListProvider().resolve().then((tokens) => {
-      const tokenList = tokens.filterByChainId(CHAIN_ID).getList();
-
-      setTokenMap(
-        tokenList.reduce((map, item) => {
-          map.set(item.address, item);
-          return map;
-        }, new Map())
-      );
-    });
+    fetch(TOKEN_LIST_URL["mainnet-beta"])
+      .then((res) => res.json())
+      .then((tokens: TokenInfo[]) => {
+        setTokenMap(
+          tokens.reduce((map, item) => {
+            map.set(item.address, item);
+            return map;
+          }, new Map())
+        );
+      });
   }, [setTokenMap]);
 
   const amountInDecimal = useMemo(() => {
@@ -67,6 +68,8 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     ...formValue,
     amount: amountInDecimal,
   });
+
+  console.log({ loading, routeMap, tokenMap });
 
   const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
@@ -103,7 +106,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
       }
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [loading]);
 
   return (
     <div className="max-w-full md:max-w-lg">
