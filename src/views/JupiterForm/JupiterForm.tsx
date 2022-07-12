@@ -13,19 +13,22 @@ import {
 import FeeInfo from "./FeeInfo";
 import SpinnerProgress from "./SpinnerProgress";
 import fetch from "cross-fetch";
+import JSBI from "jsbi";
+import Decimal from "decimal.js";
+import { SECOND_TO_REFRESH } from "../../pages/_app";
 
 interface IJupiterFormProps {}
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
-
-const SECOND_TO_REFRESH = 30;
 
 const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const wallet = useWallet();
   const { connection } = useConnection();
   const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
 
-  const [formValue, setFormValue] = useState<UseJupiterProps>({
-    amount: 1 * 10 ** 6, // unit in lamports (Decimals)
+  const [formValue, setFormValue] = useState<
+    Omit<UseJupiterProps, "amount"> & { amount: Decimal }
+  >({
+    amount: new Decimal(1), // unit in lamports (Decimals)
     inputMint: new PublicKey(INPUT_MINT_ADDRESS),
     outputMint: new PublicKey(OUTPUT_MINT_ADDRESS),
     slippage: 1, // 0.1%
@@ -36,7 +39,11 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
       tokenMap.get(formValue.inputMint?.toBase58() || ""),
       tokenMap.get(formValue.outputMint?.toBase58() || ""),
     ];
-  }, [formValue.inputMint?.toBase58(), formValue.outputMint?.toBase58()]);
+  }, [
+    tokenMap,
+    formValue.inputMint?.toBase58(),
+    formValue.outputMint?.toBase58(),
+  ]);
 
   useEffect(() => {
     fetch(TOKEN_LIST_URL["mainnet-beta"])
@@ -51,8 +58,10 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
       });
   }, [setTokenMap]);
 
-  const amountInDecimal = useMemo(() => {
-    return formValue.amount * 10 ** (inputTokenInfo?.decimals || 1);
+  const amountInInteger = useMemo(() => {
+    return JSBI.BigInt(
+      formValue.amount.mul(10 ** (inputTokenInfo?.decimals || 1))
+    );
   }, [inputTokenInfo, formValue.amount]);
 
   const {
@@ -64,10 +73,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     error,
     refresh,
     lastRefreshTimestamp,
-  } = useJupiter({
-    ...formValue,
-    amount: amountInDecimal,
-  });
+  } = useJupiter({ ...formValue, amount: amountInInteger });
 
   const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
@@ -96,7 +102,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     const intervalId = setInterval(() => {
       if (loading) return;
 
-      const diff = (new Date().getTime() - lastRefreshTimestamp) / 1000;
+      const diff = new Date().getTime() - lastRefreshTimestamp;
       setTimeDiff((diff / SECOND_TO_REFRESH) * 100);
 
       if (diff >= SECOND_TO_REFRESH) {
@@ -181,15 +187,20 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             name="amount"
             id="amount"
             className="shadow-sm bg-neutral p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-            value={formValue.amount}
+            value={formValue.amount.toString()}
             type="text"
             pattern="[0-9]*"
             onInput={(e: any) => {
-              let newValue = Number(e.target?.value || 0);
-              newValue = Number.isNaN(newValue) ? 0 : newValue;
+              let newValue = e.target?.value || "0";
+
+              let newAmount = new Decimal(newValue);
+
+              if (newAmount.lessThan(0)) {
+                newAmount = new Decimal(0);
+              }
               setFormValue((val) => ({
                 ...val,
-                amount: Math.max(newValue, 0),
+                amount: newAmount,
               }));
             }}
           />
@@ -223,7 +234,9 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               </div>
               <div>
                 Output:{" "}
-                {route.outAmount / 10 ** (outputTokenInfo?.decimals || 1)}{" "}
+                {new Decimal(route.outAmount.toString())
+                  .div(10 ** (outputTokenInfo?.decimals || 1))
+                  .toString()}{" "}
                 {outputTokenInfo?.symbol}
               </div>
               <FeeInfo route={route} />
@@ -247,9 +260,9 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               wallet.publicKey
             ) {
               const swapResult = await exchange({
+                userPublicKey: wallet.publicKey,
                 wallet: {
                   sendTransaction: wallet.sendTransaction,
-                  publicKey: wallet.publicKey,
                   signAllTransactions: wallet.signAllTransactions,
                   signTransaction: wallet.signTransaction,
                 },
