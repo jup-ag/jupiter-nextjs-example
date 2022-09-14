@@ -154,18 +154,18 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@jup-ag/core@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-2.0.0-beta.1.tgz#75ac31f5769ffbf00831e959ade5fad722c70a14"
-  integrity sha512-ldmQh5XUHjPkZ/x7krFONRZMdo+S5iWauhxtPmTVEDm9gmnQ41HUr+bgOoFDclMqRUVjnxDSZO55V7JFtqMWRQ==
+"@jup-ag/core@2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-2.0.0-beta.4.tgz#d6944335730dc5afd415336f2cd01d8b720cc585"
+  integrity sha512-tUdFV+kCav/khrHnUwEglEYEhUxRBF72IQuQ5jRqRSwqkFsw5uAFzTtPRk0fon+6hn/DUh5P7CV3PA/79cmjxQ==
   dependencies:
     "@jup-ag/crema-sdk" "2.0.7"
     "@jup-ag/cykura-sdk" "0.1.25"
     "@jup-ag/cykura-sdk-core" "0.1.8"
     "@jup-ag/lifinity-sdk" "0.1.72"
-    "@jup-ag/math" "2.0.0-beta.1"
+    "@jup-ag/math" "2.0.0-beta.4"
     "@jup-ag/whirlpool-sdk" "0.1.1"
-    "@mercurial-finance/optimist" "0.1.5"
+    "@mercurial-finance/optimist" "0.1.6"
     "@project-serum/anchor" "0.24.2"
     "@project-serum/serum" "0.13.65"
     "@saberhq/stableswap-sdk" "1.13.6"
@@ -173,6 +173,7 @@
     bn.js "5.2.1"
     cross-fetch "3.1.5"
     decimal.js "10.3.1"
+    js-sha256 "~0.9.0"
     jsbi "4.3.0"
     promise-retry "2.0.1"
 
@@ -216,20 +217,20 @@
     "@solana/web3.js" "1.31.0"
     decimal.js "^10.3.1"
 
-"@jup-ag/math@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-2.0.0-beta.1.tgz#80d8c5a878a76ef51567e5de9cea46f982c19bb6"
-  integrity sha512-Xjxovm/A/wgiQnbmBjMF3WD5UVFrm80S2Ecl4dyYKnUzxXr4jRtJhh1mB2oFIs1f/H+mXkpMm9TPZeURE20Syw==
+"@jup-ag/math@2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-2.0.0-beta.4.tgz#23b0a763a02511f82203e4853a1bdaf2b8113c1e"
+  integrity sha512-4A7PreQrwwIYJmR0V+lkwc+Lv7IEFFdGz5/pbav0vak/+D+lVa9pnL6vK8SI9knuTBXR6qNEf/jPatT7KsRslA==
   dependencies:
     decimal.js "10.3.1"
     jsbi "4.3.0"
 
-"@jup-ag/react-hook@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-2.0.0-beta.1.tgz#919fed42b4b9b0e7910c76b3b43021f105df3279"
-  integrity sha512-VggPppMkMkvCXMCfVKu/RKv6GAj9+DqUXJRau5jInuFASUNcsybKLAzvfWsq/lbHmbgdyiAeGGjqtE1anfmHxg==
+"@jup-ag/react-hook@2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-2.0.0-beta.4.tgz#d937124328c1d0f49a5a8f0e08ad056863b116b5"
+  integrity sha512-s9mArV3kQtiuwO+jU/0g2TOOco5Js71hXAsyK492HL+rj7zE83jFw2lIghDQIFdJ1lVVj0kOruQ+22QgJq5aEA==
   dependencies:
-    "@jup-ag/core" "2.0.0-beta.1"
+    "@jup-ag/core" "2.0.0-beta.4"
 
 "@jup-ag/whirlpool-sdk@0.1.1":
   version "0.1.1"
@@ -283,10 +284,12 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-6.10.0.tgz#c012c1ecc1a0e53d50e6af381618dca5268461c1"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
 
-"@mercurial-finance/optimist@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@mercurial-finance/optimist/-/optimist-0.1.5.tgz#04f43367befe8eca95ac9e286b32841883490db4"
-  integrity sha512-88FL1r/uakc1wCTL2vkSqFzsCOpAqvv6kmw++xiPNx59FFIR6NQrbfwTE0HNOszUXy6/C9nINywzUkFcyjn5hQ==
+"@mercurial-finance/optimist@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@mercurial-finance/optimist/-/optimist-0.1.6.tgz#c91795ba86d889111743160a81996c6a89b2fa6f"
+  integrity sha512-zZ00GxDQIyHO+1DlZJ3W+ZWHzPPTJ4v2JOpoguUsK7k4PlYBcKm9hThEom5RyNVK+rSMlj5vX+xqLz7+bDc2tA==
+  dependencies:
+    promise-retry "2.0.1"
 
 "@next/env@12.1.6":
   version "12.1.6"
@@ -359,6 +362,21 @@
   version "12.1.6"
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.6.tgz#a350caf42975e7197b24b495b8d764eec7e6a36e"
   integrity sha512-4ZEwiRuZEicXhXqmhw3+de8Z4EpOLQj/gp+D9fFWo6ii6W1kBkNNvvEx4A90ugppu+74pT1lIJnOuz3A9oQeJA==
+
+"@noble/ed25519@^1.7.0":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@noble/ed25519/-/ed25519-1.7.1.tgz#6899660f6fbb97798a6fbd227227c4589a454724"
+  integrity sha512-Rk4SkJFaXZiznFyC/t77Q0NKS4FL7TLJJsVG2V2oiEq3kJVeTdxysEe/yRWSpnWMe808XRDJ+VFh5pt/FN5plw==
+
+"@noble/hashes@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.1.2.tgz#e9e035b9b166ca0af657a7848eb2718f0f22f183"
+  integrity sha512-KYRCASVTv6aeUi1tsF8/vpyR7zpfs3FUzy2Jqm+MU+LmUKhQ0y2FpfwqkCcxSg2ua4GALJd8k2R76WxwZGbQpA==
+
+"@noble/secp256k1@^1.6.3":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@noble/secp256k1/-/secp256k1-1.7.0.tgz#d15357f7c227e751d90aa06b05a0e5cf993ba8c1"
+  integrity sha512-kbacwGSsH/CTout0ZnZWxnW1B+jH/7r/WAAKLBtrRJ/+CUH7lgmQzl3GTrQua3SGKWNSDsS6lmjnDpIJ5Dxyaw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -914,6 +932,27 @@
     sinon-chai "^3.7.0"
     superstruct "^0.14.2"
     tweetnacl "^1.0.0"
+
+"@solana/web3.js@^1.61.1":
+  version "1.61.1"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.61.1.tgz#183339352a69ef3c8db66ee804001ae511d46aea"
+  integrity sha512-rGxK1N/c+bGuY7ehpsT6q1jBzQ+8cmd+rPf7pQbMz0e9aBxI+67c/lBxq+0jOlj19salkT79d8R/OO+JNDyLsg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@noble/ed25519" "^1.7.0"
+    "@noble/hashes" "^1.1.2"
+    "@noble/secp256k1" "^1.6.3"
+    "@solana/buffer-layout" "^4.0.0"
+    bigint-buffer "^1.1.5"
+    bn.js "^5.0.0"
+    borsh "^0.7.0"
+    bs58 "^4.0.1"
+    buffer "6.0.1"
+    fast-stable-stringify "^1.0.0"
+    jayson "^3.4.4"
+    node-fetch "2"
+    rpc-websockets "^7.5.0"
+    superstruct "^0.14.2"
 
 "@solflare-wallet/sdk@^1.0.11":
   version "1.0.12"
@@ -3065,7 +3104,7 @@ joi@^17.4.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-js-sha256@^0.9.0:
+js-sha256@^0.9.0, js-sha256@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
   integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
@@ -3460,17 +3499,17 @@ node-emoji@^1.11.0:
   dependencies:
     lodash "^4.17.21"
 
-node-fetch@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
-
-node-fetch@2.6.7:
+node-fetch@2, node-fetch@2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
   dependencies:
     whatwg-url "^5.0.0"
+
+node-fetch@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-gyp-build@^3.8.0:
   version "3.9.0"
@@ -4006,6 +4045,19 @@ rpc-websockets@^7.4.2:
   version "7.4.18"
   resolved "https://registry.yarnpkg.com/rpc-websockets/-/rpc-websockets-7.4.18.tgz#274c825c0efadbf6fe75f10289229ae537fe9ffb"
   integrity sha512-bVu+4qM5CkGVlTqJa6FaAxLbb5uRnyH4te7yjFvoCzbnif7PT4BcvXtNTprHlNvsH+/StB81zUQicxMrUrIomA==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    eventemitter3 "^4.0.7"
+    uuid "^8.3.2"
+    ws "^8.5.0"
+  optionalDependencies:
+    bufferutil "^4.0.1"
+    utf-8-validate "^5.0.2"
+
+rpc-websockets@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/rpc-websockets/-/rpc-websockets-7.5.0.tgz#bbeb87572e66703ff151e50af1658f98098e2748"
+  integrity sha512-9tIRi1uZGy7YmDjErf1Ax3wtqdSSLIlnmL5OtOzgd5eqPKbsPpwDP5whUDO2LQay3Xp0CcHlcNSGzacNRluBaQ==
   dependencies:
     "@babel/runtime" "^7.17.2"
     eventemitter3 "^4.0.7"
