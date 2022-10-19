@@ -202,10 +202,10 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@jup-ag/core@3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-3.0.0-beta.0.tgz#8e2cad4e5076e91a0220151df05cdb211e2e2f06"
-  integrity sha512-yiBjrspwR4aMRZ30cazzNhu3nvEMSoyjJUGk+ns5J7EjG6OIQ1QuFysk1mtPC1Gqcq1IZkN8XXsjBK3f4nUJAA==
+"@jup-ag/core@3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-3.0.0-beta.2.tgz#53ca81ed7d62046ca830a368b3aa16cf35a3f05c"
+  integrity sha512-3T2lMhR6pXv3NokzW1mQsjCXU5CuKrWpfklDoyq/lQmYcw+k1O3ymkiaEbZy0gQkO3VPichN+FscVLWOeq2j6w==
   dependencies:
     "@jup-ag/crema-sdk" "2.0.7"
     "@jup-ag/cykura-sdk" "0.1.25"
@@ -214,7 +214,7 @@
     "@jup-ag/goosefx-ssl-sdk" "1.2.13"
     "@jup-ag/invariant" "0.9.35"
     "@jup-ag/lifinity-sdk" "0.1.72"
-    "@jup-ag/math" "3.0.0-beta.0"
+    "@jup-ag/math" "3.0.0-beta.2"
     "@jup-ag/whirlpool-sdk" "0.1.1"
     "@mercurial-finance/dynamic-amm-sdk" "0.1.4"
     "@mercurial-finance/optimist" "0.1.8"
@@ -304,20 +304,20 @@
     "@solana/web3.js" "1.31.0"
     decimal.js "^10.3.1"
 
-"@jup-ag/math@3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-3.0.0-beta.0.tgz#8944636a41d1b446e347f55e13a2774c74850990"
-  integrity sha512-2XXnTh2HPWiV0pqy2+zxLHjOfQjQ/okUgkXbpllweRxyA2ixFfyAuJqz8tDq2ijMWZkScYS0rf5B1X94y0PabA==
+"@jup-ag/math@3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-3.0.0-beta.2.tgz#3fad0dc257bea8e7a30dd6a44d570840f0f6b0d2"
+  integrity sha512-kHgIVhJLjpNMc/ZKpPISpb68vkgvTbrG32dLU1cSmKMhLu6GU/0pY9Feq+LvcEJ8MVv8qAGvjTibYA1UmTNagg==
   dependencies:
     decimal.js "10.3.1"
     jsbi "4.3.0"
 
-"@jup-ag/react-hook@3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-3.0.0-beta.0.tgz#c54987acaabd4ae8943c11fb223e026722add9ad"
-  integrity sha512-XpM1m2M7Lwy5qPuKfHnZykNgXQXG0srFni4/ig/STgy1eudj+pSqdcd1Jjhh1ug9Jl/YzRzx8kXuOmzworSg7Q==
+"@jup-ag/react-hook@3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-3.0.0-beta.2.tgz#129076f98a2f0297eaf2de53a4898b7113ca84bc"
+  integrity sha512-JIHNbcNM1KkpK6vubAOU+pCuq1DGGtU4lAWWzZ+fzrEc7CFhLMK7iZ0urE3HOEcuqJzTU2mdFFmkdN+7SMk0mA==
   dependencies:
-    "@jup-ag/core" "3.0.0-beta.0"
+    "@jup-ag/core" "3.0.0-beta.2"
 
 "@jup-ag/whirlpool-sdk@0.1.1":
   version "0.1.1"
@@ -1039,6 +1039,7 @@
     cross-fetch "3.0.6"
 
 "@solana/spl-token-v2@npm:@solana/spl-token@0.2.0", "@solana/spl-token@^0.2.0":
+  name "@solana/spl-token-v2"
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@solana/spl-token/-/spl-token-0.2.0.tgz#329bb6babb5de0f9c40035ddb1657f01a8347acd"
   integrity sha512-RWcn31OXtdqIxmkzQfB2R+WpsJOVS6rKuvpxJFjvik2LyODd+WN58ZP3Rpjpro03fscGAkzlFuP3r42doRJgyQ==
