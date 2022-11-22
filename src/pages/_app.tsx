@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import type { AppProps } from "next/app";
 import {
   ConnectionProvider,
@@ -30,9 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 const JupiterWrapper: React.FC = ({ children }) => {
   const { connection } = useConnection();
   const wallet = useWallet();
+
   return (
     <JupiterProvider
-      cluster="mainnet-beta"
       connection={connection}
       userPublicKey={wallet.publicKey || undefined}
       routeCacheDuration={SECOND_TO_REFRESH}

@@ -230,7 +230,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             <div>
               <div>
                 Best route info :{" "}
-                {route.marketInfos.map((info) => info.amm.label).join(" -> ")}
+                {route.marketInfos.map((info) => info.label).join(" -> ")}
               </div>
               <div>
                 Output:{" "}
