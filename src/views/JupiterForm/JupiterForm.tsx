@@ -4,11 +4,7 @@ import { TokenInfo } from "@solana/spl-token-registry";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 
 import { TOKEN_LIST_URL, useJupiter } from "@jup-ag/react-hook";
-import {
-  CHAIN_ID,
-  INPUT_MINT_ADDRESS,
-  OUTPUT_MINT_ADDRESS,
-} from "../../constants";
+import { INPUT_MINT_ADDRESS, OUTPUT_MINT_ADDRESS } from "../../constants";
 
 import FeeInfo from "./FeeInfo";
 import SpinnerProgress from "./SpinnerProgress";
@@ -31,7 +27,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
     amount: new Decimal(1), // unit in lamports (Decimals)
     inputMint: new PublicKey(INPUT_MINT_ADDRESS),
     outputMint: new PublicKey(OUTPUT_MINT_ADDRESS),
-    slippage: 1, // 0.1%
+    slippageBps: 1, // 0.1%
   });
 
   const [inputTokenInfo, outputTokenInfo] = useMemo(() => {
