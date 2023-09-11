@@ -15,7 +15,7 @@ export const CHAIN_ID =
 export const SOLANA_RPC_ENDPOINT =
   ENV === "devnet"
     ? "https://api.devnet.solana.com"
-    : "https://solana-api.projectserum.com";
+    : "https://rpc-public.hellomoon.io";
 
 // Token Mints
 export const INPUT_MINT_ADDRESS =

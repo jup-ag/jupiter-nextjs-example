@@ -63,7 +63,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const {
     routeMap,
     allTokenMints,
-    routes,
+    quoteResponseMeta,
     loading,
     exchange,
     error,
@@ -217,16 +217,16 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
         </button>
       </div>
 
-      <div>Total routes: {routes?.length}</div>
-
-      {routes?.[0] &&
+      {quoteResponseMeta &&
         (() => {
-          const route = routes[0];
+          const route = quoteResponseMeta.quoteResponse;
           return (
             <div>
               <div>
                 Best route info :{" "}
-                {route.marketInfos.map((info) => info.label).join(" -> ")}
+                {route.routePlan
+                  .map((info) => info.swapInfo.label)
+                  .join(" -> ")}
               </div>
               <div>
                 Output:{" "}
@@ -249,20 +249,14 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           onClick={async () => {
             if (
               !loading &&
-              routes?.[0] &&
+              quoteResponseMeta &&
               wallet.signAllTransactions &&
-              wallet.signTransaction &&
-              wallet.sendTransaction &&
               wallet.publicKey
             ) {
               const swapResult = await exchange({
                 userPublicKey: wallet.publicKey,
-                wallet: {
-                  sendTransaction: wallet.sendTransaction,
-                  signAllTransactions: wallet.signAllTransactions,
-                  signTransaction: wallet.signTransaction,
-                },
-                routeInfo: routes[0],
+                routeInfo: quoteResponseMeta,
+                wallet,
                 onTransaction: async (txid) => {
                   console.log("sending transaction");
                 },

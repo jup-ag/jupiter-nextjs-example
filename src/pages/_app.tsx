@@ -10,11 +10,12 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/App.css";
 import { JupiterProvider } from "@jup-ag/react-hook";
+import { SOLANA_RPC_ENDPOINT } from "../constants";
 
 export const SECOND_TO_REFRESH = 30 * 1000;
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const endpoint = useMemo(() => "https://ssc-dao.genesysgo.net/", []);
+  const endpoint = useMemo(() => SOLANA_RPC_ENDPOINT, []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
